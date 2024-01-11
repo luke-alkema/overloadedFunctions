@@ -20,6 +20,7 @@ void assessGrade(int assignment1, int assignment2, int assignment3, int assignme
 
 int parseUserInput(char buffer[])
 {
+	
 	return 0;
 }
 
