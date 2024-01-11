@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_ARRAY_LENGTH 31
+#define MAX_ARRAY_LENGTH 101
 #define SUCCESS 1
 #define FAILURE -1
 #define TRUE 0
