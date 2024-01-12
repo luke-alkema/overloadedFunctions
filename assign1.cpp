@@ -3,7 +3,7 @@
 int main(void)
 {
 	char userInput[MAX_ARRAY_LENGTH] = "";
-	char myArray[] = "";
+	char fileInput[] = "";
 	FILE* fp = NULL;
 
 	while (true)
@@ -20,15 +20,15 @@ int main(void)
 		{
 			if ((fp = fopen(userInput + 2, "r")) == NULL) //will open a file two positions after the Z, so the space is important
 			{
-				printf("Error opening the file '%s'", userInput + 2);
+				printf("Error opening the file '%s'.\n", userInput + 2);
 			}
-			while ((fgets(userInput, MAX_ARRAY_LENGTH, fp)) != NULL)
+			while ((fgets(fileInput, MAX_ARRAY_LENGTH, fp)) != NULL)
 			{
-				parseUserInput(userInput);
+				parseUserInput(fileInput);
 			}
 			if (fclose(fp) != TRUE)
 			{
-				printf("Error: Can't close file.");
+				printf("Error: Can't close the file '%s'.\n", userInput + 2);
 			}
 		}
 		else
