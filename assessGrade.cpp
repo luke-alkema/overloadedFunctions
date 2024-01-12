@@ -1,20 +1,46 @@
 #include "assessGrade.h"
 
 
-void assessGrade(char grade[])
+int assessGrade(char grade[], int one)
 {
-
+	return 0;
 }
 
-void assessGrade(double finalMark)
+int assessGrade(double finalMark) 
 {
-
+	printf("I got a %.2f %% grade!\n", finalMark);
+	return 0;
 }
 
 
-void assessGrade(int assignment1, int assignment2, int assignment3, int assignment4, int assignment5)
+int assessGrade(int assignments[])
 {
+	int status = SUCCESS;
+	int total = 0;
+	int i = 0;
 
+	for (i = 0; i < numOfAssignments; i++)
+	{
+		if (assignments[i] > 100 || assignments[i] < 0)
+		{
+			
+			printf("MAYDAY, there has been a breach!\n");
+			status = FAILURE;
+			break;
+		}
+
+		total += assignments[i];
+
+	}
+	
+	if (status == SUCCESS)
+	{
+		assessGrade((double)total / numOfAssignments);
+	}
+	else
+	{
+		return status;
+	}
 }
 
 
@@ -37,10 +63,13 @@ int parseUserInput(char buffer[])
 }
 
 
+
+
 // Function:	deleteNewLineCharacter()
 // Parameters:	char: string[]: Any array of characters			
 // Returns:		void			
-// Description: This function simply replaces the '\n' character from the end of a C-string with null (if it is there) (normally used because fgets() adds a \n automatically to the end of a string) 
+// Description: This function simply replaces the '\n' character from the end of a C-string with null (if it is there) 
+//				(normally used because fgets() adds a \n automatically to the end of a string) 
 
 void deleteNewLineCharacter(char string[])
 {
