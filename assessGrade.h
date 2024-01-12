@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define MAX_ARRAY_LENGTH 101
 #define SUCCESS 1

@@ -20,7 +20,19 @@ void assessGrade(int assignment1, int assignment2, int assignment3, int assignme
 
 int parseUserInput(char buffer[])
 {
+	char* strPtr = NULL;
+	int assignGrades[numOfAssignments];
+	// Parses floating point cases
+	if (strtod(buffer, &strPtr) != 0)
+	{
+		assessGrade(buffer);
+	}
 	
+	if (sscanf(buffer, "%d %d %d %d %d") <= 5)
+	{
+		assessGrade(assignmentGrade[numOfAssignments]);
+	}
+
 	return 0;
 }
 
