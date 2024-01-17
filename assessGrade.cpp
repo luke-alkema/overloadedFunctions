@@ -1,16 +1,29 @@
 #include "assessGrade.h"
 
-
-int assessGrade(char grade[], int one)
+int assessGrade(double finalMark)
 {
-	return 0;
+
+	int status = SUCCESS;
+	if (finalMark <= ONE_HUNDRED && finalMark >= ZERO)
+	{
+		if (finalMark >= kPass)
+		{
+			printf("Student achieved %6.2f %% which is a PASS condition.\n", finalMark);
+		}
+		else
+		{
+			printf("Student achieved %6.2f %% which is a FAIL condition.\n", finalMark);
+		}
+	}
+	else
+	{
+		printf("**ERROR : Invalid Input\n");
+		status = FAILURE;
+	}
+	
+	return status;
 }
 
-int assessGrade(double finalMark) 
-{
-	printf("I got a %.2f %% grade!\n", finalMark);
-	return 0;
-}
 
 
 int assessGrade(int assignments[])
@@ -19,12 +32,12 @@ int assessGrade(int assignments[])
 	int total = 0;
 	int i = 0;
 
-	for (i = 0; i < numOfAssignments; i++)
+	for (i = 0; i < NUM_OF_ASSIGNMENTS; i++)
 	{
-		if (assignments[i] > 100 || assignments[i] < 0)
+		if (assignments[i] > ONE_HUNDRED || assignments[i] < ZERO)
 		{
 			
-			printf("MAYDAY, there has been a breach!\n");
+			printf("**ERROR : Invalid Input\n");
 			status = FAILURE;
 			break;
 		}
@@ -35,31 +48,54 @@ int assessGrade(int assignments[])
 	
 	if (status == SUCCESS)
 	{
-		assessGrade((double)total / numOfAssignments);
+		status = assessGrade((double)total / (double)NUM_OF_ASSIGNMENTS);
 	}
-	else
-	{
-		return status;
-	}
+
+	return status;
+}
+
+int assessGrade(char stringGrade[])
+{
+	int status = SUCCESS;
+	int grade = 0;
+	//i suggest using something like <<< if strcmp(stringGrade, "A+") { assessGrade (95.0) } >>> for most of the special cases, and then a final else at the end for all invalid strings--and set status to failure there
+	//some special cases won't need to call the worker bee and can just output here
+
+	return status;
 }
 
 
-int parseUserInput(char buffer[])
-{
-	char* strPtr = NULL;
-	int assignGrades[numOfAssignments];
-	// Parses floating point cases
-	if (strtod(buffer, &strPtr) != 0)
-	{
-		assessGrade(buffer);
-	}
-	
-	if (sscanf(buffer, "%d %d %d %d %d") <= 5)
-	{
-		assessGrade(assignmentGrade[numOfAssignments]);
-	}
 
-	return 0;
+int parseUserInput(char userInput[])
+{
+	int status = SUCCESS;
+	char* pDecimal = strchr(userInput, '.');
+	int assignGrades[NUM_OF_ASSIGNMENTS] = { 0 };
+	double result = 0.0;
+
+	// Parses floating point cases
+	if (pDecimal != NULL)
+	{
+		status = assessGrade(atof(userInput)); //Sean won't be mean and test values with a decimal that don't work he said
+	}
+	//Parses 5 ints cases
+	else if (sscanf(userInput, "%d", assignGrades) == 1) //if the first character in string is a integer number we will send to assessGrade(int[]),
+	{
+		if ((sscanf(userInput, "%d %d %d %d %d", assignGrades, assignGrades + ONE, assignGrades + TWO, assignGrades + THREE, assignGrades + FOUR)) > 0)
+		{
+			status = assessGrade(assignGrades);
+		}
+		else
+		{
+			status = FAILURE;
+		}
+	}
+	//If not going to assessGrade(int[]) or assessGrade(double), go to assessGrade(char*)
+	else 
+	{
+		status = assessGrade(userInput);
+	}
+	return status;
 }
 
 
