@@ -9,11 +9,22 @@
 #define SUCCESS 1
 #define FAILURE -1
 #define TRUE 0
-#define numOfAssignments 5  
+#define NUM_OF_ASSIGNMENTS 5
+#define ZERO 0
+#define ONE 1
+#define TWO 2
+#define THREE 3
+#define FOUR 4
+#define FIVE 5
+#define ONE_HUNDRED 100
+
+#define SUCCESS 1
+const double kPass = 54.5;
+
 
 //function prototypes
-int assessGrade(char grade[], int one);
+int assessGrade(char grade[]);
 int assessGrade(double finalMark);
-int assessGrade(int assignments[] = 0);
+int assessGrade(int assignments[] = { 0 } );
 int parseUserInput(char buffer[]);
 void deleteNewLineCharacter(char string[]);

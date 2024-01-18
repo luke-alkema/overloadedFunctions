@@ -2,8 +2,9 @@
 
 int main(void)
 {
+	int status = SUCCESS;
 	char userInput[MAX_ARRAY_LENGTH] = "";
-	char fileInput[] = "";
+	char fileInput[MAX_ARRAY_LENGTH] = "";
 	FILE* fp = NULL;
 
 	while (true)
@@ -18,9 +19,9 @@ int main(void)
 		}
 		else if (userInput[0] == 'Z')
 		{
-			if ((fp = fopen(userInput + 2, "r")) == NULL) //will open a file two positions after the Z, so the space is important
+			if ((fp = fopen(userInput + TWO, "r")) == NULL) //will open a file two positions after the Z, so the space is important
 			{
-				printf("Error opening the file '%s'.\n", userInput + 2);
+				printf("** File I/O ERROR\n");
 			}
 			while ((fgets(fileInput, MAX_ARRAY_LENGTH, fp)) != NULL)
 			{
@@ -28,14 +29,14 @@ int main(void)
 			}
 			if (fclose(fp) != TRUE)
 			{
-				printf("Error: Can't close the file '%s'.\n", userInput + 2);
+				printf("** File I/O ERROR\n");
 			}
 		}
 		else
 		{
-			parseUserInput(userInput);
+			parseUserInput(userInput); //If not a file or 'X', send for further parsing
 		}
-	}//end while loop
+	}//end of while loop
 
 
 	return 0;
