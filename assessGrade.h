@@ -17,8 +17,15 @@
 #define FOUR 4
 #define FIVE 5
 #define ONE_HUNDRED 100
+#define A_PLUS 10
+#define B_C_PLUS 5
 
-#define SUCCESS 1
+#define A 85
+#define B 72
+#define C 62
+#define D 57
+#define F 50
+
 const double kPass = 54.5;
 
 
