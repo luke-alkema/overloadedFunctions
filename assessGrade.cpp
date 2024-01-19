@@ -1,5 +1,6 @@
 #include "assessGrade.h"
 
+
 // Function:	assessGrade()
 // Parameters:	double finalMark: holds parsed input in form of double.	
 // Returns:		int status: Integer variable to hold return code. Either SUCCESS(1) or FAILURE(-1).		
@@ -23,7 +24,8 @@ int assessGrade(double finalMark)
 	}
 	else
 	{
-		printf("**ERROR : Invalid Input \n");
+
+		printf("**ERROR : Invalid Input\n");
 		status = FAILURE;
 	}
 	
@@ -34,6 +36,7 @@ int assessGrade(double finalMark)
 // Parameters:	int assignments[]: integer array to hold parsed input as integers.		
 // Returns:		int status: Integer variable to hold return code. Either SUCCESS(1) or FAILURE(-1).			
 // Description: Does a boundary check on each element, obtains average of grades obtained. Then proceeds to worker bee if SUCCESS.
+
 
 int assessGrade(int assignments[])
 {
@@ -46,7 +49,8 @@ int assessGrade(int assignments[])
 		if (assignments[i] > ONE_HUNDRED || assignments[i] < ZERO)
 		{
 			
-			printf("**ERROR : Invalid Input \n");
+
+  printf("**ERROR : Invalid Input\n");
 			status = FAILURE;
 			break;
 		}
@@ -140,11 +144,17 @@ int assessGrade(char stringGrade[])
 	return status;
 }
 
+
+	}
+
+	return status;
+}
+
+
 // Function:	parseUserInput()
 // Parameters:	char userInput[]: A c-style string to hold the users input.			
 // Returns:		int status: Integer variable to hold return code. Either SUCCESS(1) or FAILURE(-1).			
 // Description: Determines what type of data the user has input. Then transforms the data to its proper data type, then calls proper assessGrade() function
-
 int parseUserInput(char userInput[])
 {
 	int status = SUCCESS;
