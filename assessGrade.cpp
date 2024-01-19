@@ -1,5 +1,9 @@
 #include "assessGrade.h"
-
+// Filename:    assessGrade.cpp
+// Project:     Overloaded Functions
+// By:          Dylan Shouldice, Luke Akema
+// Date:        1/19/2024
+// Description: Holds the functions needed to complete the process of assessing the grade.
 
 // Function:	assessGrade()
 // Parameters:	double finalMark: holds parsed input in form of double.	
