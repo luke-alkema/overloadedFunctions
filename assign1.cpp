@@ -25,7 +25,8 @@ int main(void)
 			}
 			while ((fgets(fileInput, MAX_ARRAY_LENGTH, fp)) != NULL)
 			{
-				parseUserInput(fileInput);
+				deleteNewLineCharacter(fileInput);
+				status = parseUserInput(fileInput);
 			}
 			if (fclose(fp) != TRUE)
 			{
@@ -34,10 +35,10 @@ int main(void)
 		}
 		else
 		{
-			parseUserInput(userInput); //If not a file or 'X', send for further parsing
+			status = parseUserInput(userInput); //If not a file or 'X', send for further parsing
 		}
 	}//end of while loop
 
 
-	return 0;
+	return status;
 }

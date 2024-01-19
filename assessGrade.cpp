@@ -24,11 +24,9 @@ int assessGrade(double finalMark)
 	}
 	else
 	{
-
-		printf("**ERROR : Invalid Input\n");
 		status = FAILURE;
 	}
-	
+
 	return status;
 }
 
@@ -48,9 +46,6 @@ int assessGrade(int assignments[])
 	{
 		if (assignments[i] > ONE_HUNDRED || assignments[i] < ZERO)
 		{
-			
-
-  printf("**ERROR : Invalid Input\n");
 			status = FAILURE;
 			break;
 		}
@@ -58,7 +53,7 @@ int assessGrade(int assignments[])
 		total += assignments[i];
 
 	}
-	
+
 	if (status == SUCCESS)
 	{
 		status = assessGrade((double)total / (double)NUM_OF_ASSIGNMENTS);
@@ -74,81 +69,78 @@ int assessGrade(int assignments[])
 
 int assessGrade(char stringGrade[])
 {
-	int status = SUCCESS;
+	int status = FAILURE;
 	int grade = 0;
 	// Array with elements matched to corresponding grades. If A+ add 10, if B+ or C+ add 5.
-	int gradeList[2][5] = { {'A', 'B', 'C', 'D', 'F'}, {85, 72, 62, 57, 50} };
-	
-	if (strcmp(stringGrade, "I") == 0)
+	int gradeList[TWO][FIVE] = { {'A', 'B', 'C', 'D', 'F'}, {A, B, C, D, F} };
+
+	if (strcmp(stringGrade, "I") == TRUE)
 	{
-		printf("Student has Special Situation : %s (Incomplete \n)", stringGrade);
-		return status;
+		printf("Student has Special Situation : %s (Incomplete) \n", stringGrade);
+		status = SUCCESS;
 	}
 
-	if (strcmp(stringGrade, "Q") == 0)
+	else if (strcmp(stringGrade, "Q") == TRUE)
 	{
 		printf("Student has Special Situation : %s (Withdrawl After Drop/Refund Date) \n", stringGrade);
-		return status;
+		status = SUCCESS;
 	}
 
-	if (strcmp(stringGrade, "AU") == 0)
+	else if (strcmp(stringGrade, "AU") == TRUE)
 	{
 		printf("Student has Special Situation : %s (Audit Condition) \n", stringGrade);
-		return status;
+		status = SUCCESS;
 	}
 
-	if (strcmp(stringGrade, "DNA") == 0)
+	else if (strcmp(stringGrade, "DNA") == TRUE)
 	{
-		printf("Student has Special Situation : %s (Did Not Attend)  \n", stringGrade);
-		return status;
+		printf("Student has Special Situation : %s (Did Not Attend) \n", stringGrade);
+		status = SUCCESS;
 	}
 
-	if (strcmp(stringGrade, "I/P") == 0)
+	else if (strcmp(stringGrade, "I/P") == TRUE)
 	{
 		printf("Student has Special Situation : %s (In Process) \n", stringGrade);
-		return status;
+		status = SUCCESS;
 	}
 
-	for (int row = 0; row < 5; row++)
+	else
 	{
-		if (strchr(stringGrade, gradeList[0][row]))
+
+		for (int row = 0; row < FIVE; row++)
 		{
-			if (strchr(stringGrade, '+') != NULL)
+			if (strchr(stringGrade, gradeList[ZERO][row]))
 			{
-				// If 'A' and '+' are present, add 10 to the grade associated with 'A'
-				// Else add 5
-				if (strchr(stringGrade, 'A') != NULL)
+				if (stringGrade[ONE] == '+' && row <= TWO && strlen(stringGrade) == TWO)
 				{
-					grade = (gradeList[1][row] + 10);
-					status = assessGrade(grade);
-					return status;
+					// If 'A' and '+' are present, add 10 to the grade associated with 'A'
+					// Else add 5
+					if (strchr(stringGrade, 'A') != NULL)
+					{
+						grade = (gradeList[ONE][row] + A_PLUS);
+						status = assessGrade(grade);
+						break;
+					}
+					else
+					{
+						grade = (gradeList[ONE][row] + FIVE);
+						status = assessGrade(grade);
+						break;
+					}
 				}
-				else
+				else if (strlen(stringGrade) == ONE) //Only singular letter grade, since no '+' present
 				{
-					grade = (gradeList[1][row] + 5);
-					status = assessGrade(grade);
-					return status;
+					grade = gradeList[1][row];
+					status = assessGrade((double)grade);
+					break;
 				}
-			}
-			else
-			{
-				grade = gradeList[1][row];
-				status = assessGrade((double)grade);
-				return status;
 			}
 		}
 	}
-	
-	printf("**ERROR : Invalid input \n");
-	status = FAILURE;
-	return status;
-}
-
-
-	}
 
 	return status;
 }
+
 
 
 // Function:	parseUserInput()
@@ -165,10 +157,10 @@ int parseUserInput(char userInput[])
 	// Parses floating point cases
 	if (pDecimal != NULL)
 	{
-		status = assessGrade(atof(userInput)); //Sean won't be mean and test values with a decimal that don't work he said
+		status = assessGrade(atof(userInput)); 
 	}
 	//Parses 5 ints cases
-	else if (sscanf(userInput, "%d", assignGrades) == ONE) 
+	else if (sscanf(userInput, "%d", assignGrades) == ONE)
 	{
 		if ((sscanf(userInput, "%d %d %d %d %d", assignGrades, assignGrades + ONE, assignGrades + TWO, assignGrades + THREE, assignGrades + FOUR)) > 0)
 		{
@@ -180,10 +172,18 @@ int parseUserInput(char userInput[])
 		}
 	}
 	//If not going to assessGrade(int[]) or assessGrade(double), go to assessGrade(char*)
-	else 
+	else
 	{
 		status = assessGrade(userInput);
 	}
+
+
+	if (status == FAILURE)
+	{
+		printf("**ERROR : Invalid input \n");
+	}
+
+
 	return status;
 }
 
