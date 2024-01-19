@@ -79,7 +79,7 @@ int parseUserInput(char userInput[])
 		status = assessGrade(atof(userInput)); //Sean won't be mean and test values with a decimal that don't work he said
 	}
 	//Parses 5 ints cases
-	else if (sscanf(userInput, "%d", assignGrades) == 1) //if the first character in string is a integer number we will send to assessGrade(int[]),
+	else if (sscanf(userInput, "%d", assignGrades) == ONE) 
 	{
 		if ((sscanf(userInput, "%d %d %d %d %d", assignGrades, assignGrades + ONE, assignGrades + TWO, assignGrades + THREE, assignGrades + FOUR)) > 0)
 		{
