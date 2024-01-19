@@ -1,5 +1,11 @@
 #include "assessGrade.h"
 
+// Flename:        assign1.cpp
+// Project:        Overloaded Functions
+// By:             Luke Alkema
+// Date:           1/19/2023
+// Description:    Checks for cases such as "Z fileName" and then opens the file, as well as "X". Then proceeds to call parseUserInput as neccessarry. 
+
 int main(void)
 {
 	int status = SUCCESS;
