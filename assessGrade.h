@@ -28,7 +28,6 @@
 
 const double kPass = 54.5;
 
-//Testing
 //function prototypes
 int assessGrade(char grade[]);
 int assessGrade(double finalMark);
@@ -36,4 +35,3 @@ int assessGrade(int assignments[] = { 0 } );
 int parseUserInput(char buffer[]);
 void deleteNewLineCharacter(char string[]);
 
-// Hello
