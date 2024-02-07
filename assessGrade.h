@@ -35,3 +35,5 @@ int assessGrade(double finalMark);
 int assessGrade(int assignments[] = { 0 } );
 int parseUserInput(char buffer[]);
 void deleteNewLineCharacter(char string[]);
+
+// Hello
